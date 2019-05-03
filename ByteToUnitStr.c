@@ -22,7 +22,7 @@ VOID ByteToUnitStr(LPTSTR strSize, DWORD nSizeHigh, DWORD nSizeLow)
 	}//计算EB
 	else if (nSizeHigh >= EBH)
 	{
-		rv = (double)nSizeHigh / PBH * 1024 +
+		rv = (double)nSizeHigh / EBH +
 			(double)nSizeLow / ~0u / EBH;
 		strUnit = _T("EB");
 	}
