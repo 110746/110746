@@ -7,7 +7,7 @@ VOID ByteToUnitStr(LPTSTR strSize, DWORD nSizeHigh, DWORD nSizeLow)
 	static const DWORD EBH = 262144;
 	static const DWORD TBH = 256;
 	static const DWORD GB = 1073741824;
-	static const DWORD MB = 106496;
+	static const DWORD MB = 1048576;
 	static const DWORD KB = 1024;
 
 	LPCTSTR strUnit = 0;
