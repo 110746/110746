@@ -1,4 +1,4 @@
-﻿#ifndef XL_C_ARRAY_H
+#ifndef XL_C_ARRAY_H
 #define XL_C_ARRAY_H
 #include <stdlib.h>
 
@@ -32,18 +32,21 @@ void*  ary_erases(parray ary, void* begin, void* end);
 //设置元素如何重新分配，param为传给f_realloc的自定义数据
 void  ary_set_realloc(parray ary, unsigned (*f_realloc)(unsigned, unsigned, void*), void* param);
 
-#define ary_ary(pary)   ((pary)->ary)
+#define ary_ary(pary)   ((char*)(pary)->ary)
 #define ary_size(pary)  ((pary)->size)
 #define ary_length(pary)  ((pary)->n)
 #define ary_capacity(pary)  ((pary)->cn)
 #define ary_ptr_first(pary) ary_ary((pary))
-#define ary_ptr_last(pary)   ((char*)ary_ary((pary)) + (ary_length((pary)) ? ary_length((pary)) -1 : 0) * ary_size((pary)))
+//如果ary_length为0，则ary_ptr_last返回rbegin,千万不要解引用
+#define ary_ptr_last(pary)   (ary_ary((pary)) + (ary_length((pary)) - 1 ) * ary_size((pary)))
 #define ary_ptr_begin(pary) ary_ptr_first((pary))
-#define ary_ptr_end(pary)    ((char*)ary_ptr_last((pary)) +  ary_size((pary)))
+#define ary_ptr_end(pary)    (ary_ptr_last((pary)) +  ary_size((pary))  )
 #define ary_insert(pary,pos, obj,isFront) ary_inserts((pary), (pos), (obj), (char*)(obj) + (pary)->size, (isFront))
 #define ary_push_front(pary, obj) ary_insert((pary),ary_ary((pary)) ,(obj), 1)
 #define ary_push_back(pary, obj)   ary_insert((pary),ary_ptr_last((pary)),(obj), 0) 
-#define ary_erase(pary,pos) ary_erases((pary),(pos), ((pos) + 1))
+#define ary_erase(pary,pos) ary_erases((pary),(pos), ((pos) +1) )
+#define ary_pop_front(pary) ary_erases((pary),ary_ptr_first((pary)), (ary_ptr_first((pary)) + ary_size((pary)) ) )
+#define ary_pop_back(pary) ary_erases((pary),ary_ptr_last((pary)), (ary_ptr_last((pary)) + ary_size((pary)) ) )
 
 
 #endif
