@@ -56,7 +56,7 @@ extern "C"
 #define FILE_ATB_NO  -1
 
 ///////////////////////////
-#define FS_SZ(n) ( (unsigned)(((LPStrName)0)->str)  + n)
+#define FS_SZ(n) ( (unsigned)(((LPStrName)0)->str)  + (n))
 typedef struct _tagStr
 {
 	WORD  len;
