@@ -1405,7 +1405,7 @@ VOID PrintFormat()
 					   
 			}
 			*sLineIter = _T('\0');
-			_tprintf(_T("xx%s\n"), sLineBuf);
+			_tprintf(_T("%s\n"), sLineBuf);
 		 
 			if (GetConsoleScreenBufferInfo(hConsoleOut, &csbi))
 			{
