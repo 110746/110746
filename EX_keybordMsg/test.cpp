@@ -1,6 +1,6 @@
 // vs2010_easyx.cpp : 定义控制台应用程序的入口点。
 //
-
+#include <conio.h>
 #include <stdio.h>
 #include "easyx.h"
 #include "easyx_mykey.h"
